@@ -7,7 +7,6 @@
 ## 🚀 Features
 
 ### 👥 Employee Management
-
 - **Complete CRUD Operations** - Add, view, edit, and delete employees
 - **Advanced Search** - Search employees by name, position, ID, or department
 - **Department Assignment** - Assign employees to specific departments
@@ -16,14 +15,12 @@
 
 
 ### 🏢 Department Management
-
 - **Department Organization** - Create and manage organizational departments
 - **Employee Count Tracking** - Automatic tracking of employees per department
 - **Department Descriptions** - Add detailed descriptions for each department
 
 
-### 💼 Professional Features
-
+## 💼 Professional Features
 - **Real-time Statistics** - Live employee and department counts in sidebar
 - **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
 - **Professional Dashboard** - Clean, enterprise-grade user interface
@@ -38,7 +35,6 @@
 - **RxJS** - Reactive programming
 - **Signals** - Modern state management
 
-
 ### Backend
 - **Node.js** - Runtime environment
 - **Express.js** - Web application framework
@@ -46,7 +42,7 @@
 - **Mongoose** - MongoDB object modeling
 
 
-### DevOps
+## DevOps
 - **Docker** - Containerization
 - **Docker Compose** - Multi-container orchestration
 - **Nginx** - Web server and reverse proxy
@@ -76,7 +72,6 @@ Before running this application, ensure you have the following installed:
 - **Backend API**: http://localhost:5200
 
 ### Manual Development Setup
-
 1. **Start the backend**
    ```bash
    cd server
@@ -136,8 +131,7 @@ mean-stack-example/
 ```
 
 
-### 🎯 API Endpoints
-
+## 🎯 API Endpoints
 ### Employees
 - GET /employees - Get all employees
 - GET /employees/:id - Get employee by ID
@@ -153,23 +147,23 @@ mean-stack-example/
 - DELETE /departments/:id - Delete department
 
 
-### 🐳 Docker Configuration
+## 🐳 Docker Configuration
 The application uses a multi-container Docker setup:
 - client: Angular frontend served by Nginx
 - server: Node.js/Express backend API
 - mongodb: MongoDB database
 
 
-### Environment Variables
+## Environment Variables
 Create a .env file in the root directory:
-- env
+- .env
 ```bash
    MONGODB\_URI=mongodb://mongodb:27017/employee\_management
    API\_URL=http://localhost:5200
 ```
 
 
-### 🎨 UI/UX Features
+## 🎨 UI/UX Features
 - Modern Material Design - Clean, professional interface
 - Responsive Layout - Optimized for all screen sizes
 - Real-time Updates - Live data synchronization
@@ -179,7 +173,7 @@ Create a .env file in the root directory:
 - Form Validation - Comprehensive error handling and user feedback
 
 
-### 🔧 Development
+## 🔧 Development
 ### Adding New Features
 
 1. Backend (API)
@@ -200,8 +194,8 @@ Create a .env file in the root directory:
 - Accessibility - WCAG compliant components
 
 
-### 🚀 Deployment
-## Production Build
+## 🚀 Deployment
+### Production Build
 ```bash
 # Build production images
 
@@ -215,7 +209,7 @@ docker build -t employee-backend ./server
 ```
 
 
-### Environment Configuration
+## Environment Configuration
 
 **Update environment.prod.ts for production:**
 ```bash
@@ -225,8 +219,8 @@ export const environment = {
 };
 ```
 
-### 🐛 Troubleshooting
-## Common Issues
+## 🐛 Troubleshooting
+### Common Issues
 
 1. **Docker build fails**
 - Ensure Docker is running
@@ -246,7 +240,7 @@ export const environment = {
 - Check browser console for errors
 
 
-### Logs
+## Logs
 View container logs:
 ```bash
 # All services
@@ -259,7 +253,7 @@ docker compose logs mongodb
 ```
 
 
-### 🤝 Contributing
+## 🤝 Contributing
 1. Fork the repository
 2. Create a feature branch: git checkout -b feature/amazing-feature
 3. Commit changes: git commit -m 'Add amazing feature'
@@ -267,9 +261,10 @@ docker compose logs mongodb
 5. Open a Pull Request
 
 
-### 📝 License
+## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
+
 
 
 
