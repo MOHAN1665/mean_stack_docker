@@ -162,9 +162,11 @@ The application uses a multi-container Docker setup:
 
 ### Environment Variables
 Create a .env file in the root directory:
-env
+- env
+```bash
    MONGODB\_URI=mongodb://mongodb:27017/employee\_management
    API\_URL=http://localhost:5200
+```
 
 
 ### 🎨 UI/UX Features
@@ -209,9 +211,7 @@ docker compose -f docker-compose.prod.yml up --build
 # Or build individually
 
 docker build -t employee-frontend ./client
-
 docker build -t employee-backend ./server
-
 ```
 
 
@@ -270,5 +270,6 @@ docker compose logs mongodb
 ### 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
+
 
 
