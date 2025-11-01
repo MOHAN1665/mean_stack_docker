@@ -58,13 +58,13 @@ Before running this application, ensure you have the following installed:
 ### Using Docker (Recommended)
 1. **Clone the repository**
  ```bash
-git clone https://github.com/MOHAN1665/mean\_stack\_docker.git
-cd mean\_stack\_docker
+   git clone https://github.com/MOHAN1665/mean\_stack\_docker.git
+   cd mean\_stack\_docker
 ```
 
 2. **Build and start the application**
  ```bash
-docker compose up --build
+   docker compose up --build
 ```
 
 3. **Access the application**
@@ -197,15 +197,15 @@ Create a .env file in the root directory:
 ## 🚀 Deployment
 ### Production Build
 ```bash
-# Build production images
-
-docker compose -f docker-compose.prod.yml up --build
-
-
-# Or build individually
-
-docker build -t employee-frontend ./client
-docker build -t employee-backend ./server
+  # Build production images
+  
+  docker compose -f docker-compose.prod.yml up --build
+  
+  
+  # Or build individually
+  
+  docker build -t employee-frontend ./client
+  docker build -t employee-backend ./server
 ```
 
 
@@ -213,10 +213,10 @@ docker build -t employee-backend ./server
 
 **Update environment.prod.ts for production:**
 ```bash
-export const environment = {
-production: true,
-apiUrl: 'https://your-api-domain.com'
-};
+   export const environment = {
+   production: true,
+   apiUrl: 'https://your-api-domain.com'
+   };
 ```
 
 ## 🐛 Troubleshooting
@@ -243,13 +243,13 @@ apiUrl: 'https://your-api-domain.com'
 ## Logs
 View container logs:
 ```bash
-# All services
-docker compose logs
-
-# Specific service
-docker compose logs client
-docker compose logs server
-docker compose logs mongodb
+   # All services
+   docker compose logs
+   
+   # Specific service
+   docker compose logs client
+   docker compose logs server
+   docker compose logs mongodb
 ```
 
 
@@ -264,3 +264,4 @@ docker compose logs mongodb
 ## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
+
