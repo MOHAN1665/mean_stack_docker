@@ -58,13 +58,13 @@ Before running this application, ensure you have the following installed:
 ### Using Docker (Recommended)
 1. **Clone the repository**
  ```bash
-&nbsp;  git clone https://github.com/MOHAN1665/mean\_stack\_docker.git
-&nbsp;  cd mean\_stack\_docker
+git clone https://github.com/MOHAN1665/mean\_stack\_docker.git
+cd mean\_stack\_docker
 ```
 
 2. **Build and start the application**
  ```bash
-&nbsp;	docker compose up --build
+docker compose up --build
 ```
 
 3. **Access the application**
@@ -214,8 +214,8 @@ docker build -t employee-backend ./server
 **Update environment.prod.ts for production:**
 ```bash
 export const environment = {
-&nbsp; production: true,
-&nbsp; apiUrl: 'https://your-api-domain.com'
+production: true,
+apiUrl: 'https://your-api-domain.com'
 };
 ```
 
@@ -264,7 +264,3 @@ docker compose logs mongodb
 ## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
-
-
-
-
