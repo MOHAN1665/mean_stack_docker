@@ -1,0 +1,100 @@
+<div class="page-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="page-title">Add New Department</h1>
+        <p class="page-subtitle">Create a new department for your organization</p>
+      </div>
+      <button 
+        mat-stroked-button 
+        routerLink="/departments"
+        class="back-button"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Back to Departments
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <mat-card class="form-card">
+    <mat-card-content>
+      <form 
+        class="department-form" 
+        [formGroup]="departmentForm" 
+        (ngSubmit)="addDepartment()"
+        autocomplete="off"
+      >
+        
+        <!-- Department Information Section -->
+        <div class="form-section">
+          <div class="section-label">
+            <mat-icon>add_business</mat-icon>
+            <span>Department Details</span>
+          </div>
+
+          <div class="form-row">
+            <!-- Department Name -->
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Department Name</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Enter department name"
+                required
+              />
+              <mat-icon matPrefix>corporate_fare</mat-icon>
+              <mat-error *ngIf="name?.hasError('required')">
+                Department name is required
+              </mat-error>
+              <mat-error *ngIf="name?.hasError('minlength')">
+                Department name must be at least 2 characters
+              </mat-error>
+              <mat-hint>Enter a unique name for the department</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Description -->
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Description</mat-label>
+              <textarea
+                matInput
+                formControlName="description"
+                placeholder="Enter department description"
+                rows="3"
+              ></textarea>
+              <mat-icon matPrefix>description</mat-icon>
+              <mat-hint>Describe the department's purpose and responsibilities (optional)</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button
+            mat-stroked-button
+            type="button"
+            routerLink="/departments"
+            class="cancel-btn"
+          >
+            <mat-icon>cancel</mat-icon>
+            Cancel
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="departmentForm.invalid"
+            class="submit-btn"
+          >
+            <mat-icon>add_circle</mat-icon>
+            Create Department
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

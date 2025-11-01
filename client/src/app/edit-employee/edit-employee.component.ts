@@ -1,59 +1,63 @@
-import { Component, OnInit, WritableSignal } from '@angular/core';
-import { EmployeeFormComponent } from '../employee-form/employee-form.component';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
-import { MatCardModule } from '@angular/material/card';
+import { Employee } from '../employee';
+import { EmployeeFormComponent } from '../employee-form/employee-form.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-employee',
+  selector: 'app-employee-edit',
   standalone: true,
-  imports: [EmployeeFormComponent, MatCardModule],
+  imports: [CommonModule, EmployeeFormComponent],
   template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Edit an Employee</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <app-employee-form
-          [initialState]="employee()"
-          (formSubmitted)="editEmployee($event)"
-        ></app-employee-form>
-      </mat-card-content>
-    </mat-card>
-  `,
-  styles: ``,
+    <div *ngIf="employee(); else loading">
+      <app-employee-form
+        [initialState]="employee()"
+        (formSubmitted)="onSubmit($event)">
+      </app-employee-form>
+    </div>
+
+    <ng-template #loading>
+      <p>Loading employee details...</p>
+    </ng-template>
+  `
 })
-export class EditEmployeeComponent implements OnInit {
-  employee = {} as WritableSignal<Employee>;
+export class EmployeeEditComponent implements OnInit {
+  employee = signal<Employee | null>(null);
 
   constructor(
-    private router: Router,
+    private employeeService: EmployeeService,
     private route: ActivatedRoute,
-    private employeeService: EmployeeService
+    private router: Router
   ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    if (!id) {
-      alert('No id provided');
-    }
-
-    this.employeeService.getEmployee(id!);
-    this.employee = this.employeeService.employee$;
-  }
-
-  editEmployee(employee: Employee) {
-    this.employeeService
-      .updateEmployee(this.employee()._id || '', employee)
-      .subscribe({
-        next: () => {
+    if (id) {
+      this.employeeService.getEmployee(id).subscribe({
+        next: (emp) => this.employee.set(emp),
+        error: (err) => {
+          console.error('Error fetching employee:', err);
+          alert('Failed to load employee details');
           this.router.navigate(['/']);
         },
-        error: (error) => {
-          alert('Failed to update employee');
-          console.error(error);
-        },
       });
+    }
+  }
+
+  onSubmit(updated: Employee) {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    this.employeeService.updateEmployee(id, updated).subscribe({
+      next: () => {
+        alert('Employee updated successfully!');
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error('Update failed:', err);
+        alert('Failed to update employee');
+      },
+    });
   }
 }

@@ -1,0 +1,156 @@
+<div class="form-container">
+  <mat-card class="employee-form-card">
+    <mat-card-header class="form-header">
+      <div class="header-content">
+        <mat-icon class="header-icon">{{ initialState ? 'edit' : 'person_add' }}</mat-icon>
+        <div>
+          <mat-card-title class="form-title">
+            {{ initialState ? 'Edit Employee' : 'Add New Employee' }}
+          </mat-card-title>
+          <mat-card-subtitle class="form-subtitle">
+            {{ initialState ? 'Update employee information' : 'Create a new employee record' }}
+          </mat-card-subtitle>
+        </div>
+      </div>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="form-content">
+      <form class="employee-form" [formGroup]="employeeForm" (ngSubmit)="submitForm()" autocomplete="off">
+        
+        <!-- Employee ID Section -->
+        <div *ngIf="initialState?.employeeId" class="readonly-section">
+          <div class="section-label">
+            <mat-icon>fingerprint</mat-icon>
+            <span>Employee ID</span>
+          </div>
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput [value]="initialState?.employeeId" readonly />
+            <mat-hint>System-generated identifier</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Personal Information Section -->
+        <div class="form-section">
+          <div class="section-label">
+            <mat-icon>person</mat-icon>
+            <span>Personal Information</span>
+          </div>
+          
+          <div class="form-row">
+            <!-- Name -->
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="name" placeholder="Enter employee's full name" />
+              <mat-icon matPrefix>badge</mat-icon>
+              <mat-error *ngIf="name.hasError('required')">Name is required</mat-error>
+              <mat-error *ngIf="name.hasError('minlength')">Minimum 3 characters required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Position -->
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Position</mat-label>
+              <input matInput formControlName="position" placeholder="e.g., Software Engineer" />
+              <mat-icon matPrefix>work_outline</mat-icon>
+              <mat-error *ngIf="position.hasError('required')">Position is required</mat-error>
+              <mat-error *ngIf="position.hasError('minlength')">Minimum 5 characters required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Job Details Section -->
+        <div class="form-section">
+          <div class="section-label">
+            <mat-icon>business_center</mat-icon>
+            <span>Job Details</span>
+          </div>
+
+          <!-- Level -->
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label">Experience Level</label>
+              <mat-radio-group formControlName="level" class="radio-group" color="primary">
+                <mat-radio-button value="junior" class="level-option">
+                  <div class="level-content">
+                    <mat-icon>person</mat-icon>
+                    <div>
+                      <div class="level-title">Junior</div>
+                      <div class="level-description">Entry level position</div>
+                    </div>
+                  </div>
+                </mat-radio-button>
+                
+                <mat-radio-button value="mid" class="level-option">
+                  <div class="level-content">
+                    <mat-icon>engineering</mat-icon>
+                    <div>
+                      <div class="level-title">Mid-Level</div>
+                      <div class="level-description">Experienced professional</div>
+                    </div>
+                  </div>
+                </mat-radio-button>
+                
+                <mat-radio-button value="senior" class="level-option">
+                  <div class="level-content">
+                    <mat-icon>senior</mat-icon>
+                    <div>
+                      <div class="level-title">Senior</div>
+                      <div class="level-description">Leadership role</div>
+                    </div>
+                  </div>
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <!-- Department -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="field-full">
+              <mat-label>Department</mat-label>
+              <mat-select formControlName="departmentId" required>
+                <mat-option value="">Select Department</mat-option>
+                <mat-option *ngFor="let dept of departments" [value]="dept._id" class="department-option">
+                  <div class="department-content">
+                    <mat-icon>apartment</mat-icon>
+                    <span>{{ dept.name }}</span>
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-icon matPrefix>Department: </mat-icon>
+              <mat-error *ngIf="employeeForm.get('departmentId')?.hasError('required')">
+                Department selection is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button 
+            mat-stroked-button 
+            type="button" 
+            routerLink="/"
+            class="cancel-btn"
+          >
+            <mat-icon>arrow_back</mat-icon>
+            Cancel
+          </button>
+          
+          <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit" 
+            [disabled]="employeeForm.invalid || employeeForm.pristine"
+            class="submit-btn"
+          >
+            <mat-icon>{{ initialState ? 'save' : 'person_add' }}</mat-icon>
+            {{ initialState ? 'Update Employee' : 'Add Employee' }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

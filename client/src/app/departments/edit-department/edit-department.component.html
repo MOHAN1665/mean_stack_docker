@@ -1,0 +1,113 @@
+<div class="page-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="page-title">Edit Department</h1>
+        <p class="page-subtitle">Update department information and details</p>
+      </div>
+      <button 
+        mat-stroked-button 
+        routerLink="/departments"
+        class="back-button"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Back to Departments
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <mat-card class="form-card">
+    <mat-card-content>
+      <!-- Loading State -->
+      <div *ngIf="loading" class="loading-state">
+        <div class="loading-content">
+          <mat-spinner diameter="50"></mat-spinner>
+          <div class="loading-text">
+            <h3>Loading Department</h3>
+            <p>Please wait while we load the department details...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Form -->
+      <div *ngIf="!loading" class="form-content">
+        <form 
+          class="department-form" 
+          [formGroup]="departmentForm" 
+          (ngSubmit)="updateDepartment()"
+          autocomplete="off"
+        >
+          
+          <!-- Department Information Section -->
+          <div class="form-section">
+            <div class="section-label">
+              <mat-icon>business</mat-icon>
+              <span>Department Information</span>
+            </div>
+
+            <div class="form-row">
+              <!-- Department Name -->
+              <mat-form-field appearance="outline" class="field-full">
+                <mat-label>Department Name</mat-label>
+                <input
+                  matInput
+                  formControlName="name"
+                  placeholder="Enter department name"
+                  required
+                />
+                <mat-icon matPrefix>corporate_fare</mat-icon>
+                <mat-error *ngIf="name?.hasError('required')">
+                  Department name is required
+                </mat-error>
+                <mat-error *ngIf="name?.hasError('minlength')">
+                  Department name must be at least 2 characters
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <!-- Description -->
+              <mat-form-field appearance="outline" class="field-full">
+                <mat-label>Description</mat-label>
+                <textarea
+                  matInput
+                  formControlName="description"
+                  placeholder="Enter department description"
+                  rows="3"
+                ></textarea>
+                <mat-icon matPrefix>description</mat-icon>
+                <mat-hint>Optional: Describe the department's purpose and responsibilities</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button
+              mat-stroked-button
+              type="button"
+              routerLink="/departments"
+              class="cancel-btn"
+            >
+              <mat-icon>cancel</mat-icon>
+              Cancel
+            </button>
+
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="departmentForm.invalid || departmentForm.pristine"
+              class="submit-btn"
+            >
+              <mat-icon>save</mat-icon>
+              Update Department
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

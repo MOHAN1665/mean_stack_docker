@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { connectToDatabase } from "./database";
 import { employeeRouter } from "./employee.routes";
+import { departmentRouter } from "./department.routes";
 
 // Load environment variables from the .env file, where the ATLAS_URI is configured
 dotenv.config();
@@ -20,9 +21,11 @@ connectToDatabase(ATLAS_URI)
   .then(() => {
     const app = express();
     app.use(cors());
-    app.use("/employees", employeeRouter);
+    app.use(express.json()); // ✅ Needed for POST body parsing
 
-    // start the Express server
+    app.use("/employees", employeeRouter);
+    app.use("/departments", departmentRouter); // ✅ Add department route
+
     app.listen(5200, () => {
       console.log(`Server running at http://localhost:5200...`);
     });

@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mean_mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    # healthcheck:
+    #   test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5
+
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.runCommand({ ping: 1 }).ok' || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: mean_server
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      # Server expects ATLAS_URI - point that at the mongo container
+      - ATLAS_URI=mongodb://host.docker.internal:27017/meanStackExample
+      # If you have other envs, add them here (e.g., PORT)
+      - PORT=5200
+    ports:
+      - "5200:5200"
+    volumes:
+      - ./server:/usr/src/app   # optional - useful if you want live code changes in container
+    command: npm start
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: mean_client
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "8080:80"   # host 4200 -> container Nginx 80
+    environment:
+      - API_URL=http://mean_server:5200
+
+
+volumes:
+  mongo_data:

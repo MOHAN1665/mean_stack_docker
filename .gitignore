@@ -1,2 +1,30 @@
-node_modules
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output
+dist/
+build/
+client/dist/
+server/dist/
+
+# Logs
+*.log
+
+# Environment files
+.env
 *.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Docker artifacts
+*.pid
+*.tar
+*.gz
+
+# IDE / editor configs
+.vscode/
+.idea/

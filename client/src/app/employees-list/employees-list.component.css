@@ -1,0 +1,376 @@
+.employee-card {
+  max-width: 1400px;
+  margin: 2rem auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid #e1e5e9;
+}
+
+/* Header Styles */
+.header {
+  padding: 2rem 2rem 1rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.title-section {
+  flex: 1;
+}
+
+.title-icon {
+  color: #1976d2;
+  margin-right: 12px;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1a237e;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.page-subtitle {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.action-btn {
+  border-radius: 8px;
+  padding: 0 20px;
+  height: 44px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+}
+
+.btn-icon {
+  margin-right: 8px;
+}
+
+/* Divider */
+.divider {
+  margin: 0 2rem;
+  background-color: #e1e5e9;
+}
+
+/* Filters Section */
+.filters-section {
+  padding: 1.5rem 2rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.search-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 300px;
+}
+
+.search-box .mat-form-field-outline {
+  background-color: white;
+}
+
+.search-btn {
+  border-radius: 8px;
+  height: 56px;
+  margin-top: 0.25em;
+}
+
+.results-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.results-count {
+  color: #666;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Loading State */
+.loading-container {
+  padding: 4rem 2rem;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loading-text {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Empty State */
+.empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #bdbdbd;
+  margin-bottom: 16px;
+}
+
+.empty-title {
+  color: #424242;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.empty-description {
+  color: #757575;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.empty-action {
+  border-radius: 8px;
+}
+
+/* Table Section */
+.table-section {
+  padding: 0;
+}
+
+.table-container {
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+}
+
+.employees-table {
+  width: 100%;
+  background: white;
+}
+
+/* Column Headers */
+.column-header {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-bottom: 2px solid #e1e5e9;
+  padding: 16px 12px;
+}
+
+.column-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.column-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #1976d2;
+}
+
+/* Table Cells */
+.column-cell {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.875rem;
+}
+
+.id-cell {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-weight: 600;
+}
+
+.id-badge {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.name-cell .employee-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.position-badge {
+  background: #f3e5f5;
+  color: #7b1fa2;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.level-badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.level-junior { background: #e8f5e8; color: #2e7d32; }
+.level-mid { background: #fff3e0; color: #ef6c00; }
+.level-senior { background: #e3f2fd; color: #1565c0; }
+.level-lead { background: #fce4ec; color: #c2185b; }
+.level-executive { background: #f3e5f5; color: #7b1fa2; }
+
+.department-chip {
+  background: #e8eaf6;
+  color: #3f51b5;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.no-department {
+  color: #9e9e9e;
+  font-style: italic;
+}
+
+/* Action Buttons */
+.action-cell {
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.action-btn-edit,
+.action-btn-delete {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.action-btn-edit:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+  transform: scale(1.1);
+}
+
+.action-btn-delete:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+  transform: scale(1.1);
+}
+
+/* Table Rows */
+.header-row {
+  height: 60px;
+}
+
+.table-row {
+  height: 64px;
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .employee-card {
+    margin: 1rem;
+    border-radius: 12px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .header,
+  .filters-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .search-container {
+    flex-direction: column;
+  }
+  
+  .search-box {
+    min-width: 100%;
+  }
+  
+  .search-btn {
+    width: 100%;
+    height: 48px;
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .action-btn {
+    width: 100%;
+  }
+}

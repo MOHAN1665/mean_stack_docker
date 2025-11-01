@@ -1,96 +1,86 @@
-import { Component, OnInit, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-employees-list',
   standalone: true,
-  imports: [RouterModule, MatTableModule, MatButtonModule, MatCardModule],
-  styles: [
-    `
-      table {
-        width: 100%;
-
-        button:first-of-type {
-          margin-right: 1rem;
-        }
-      }
-    `,
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatDividerModule
   ],
-  template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Employees List</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <table mat-table [dataSource]="employees$()">
-          <ng-container matColumnDef="col-name">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-          </ng-container>
-          <ng-container matColumnDef="col-position">
-            <th mat-header-cell *matHeaderCellDef>Position</th>
-            <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-          </ng-container>
-          <ng-container matColumnDef="col-level">
-            <th mat-header-cell *matHeaderCellDef>Level</th>
-            <td mat-cell *matCellDef="let element">{{ element.level }}</td>
-          </ng-container>
-          <ng-container matColumnDef="col-action">
-            <th mat-header-cell *matHeaderCellDef>Action</th>
-            <td mat-cell *matCellDef="let element">
-              <button mat-raised-button [routerLink]="['edit/', element._id]">
-                Edit
-              </button>
-              <button
-                mat-raised-button
-                color="warn"
-                (click)="deleteEmployee(element._id || '')"
-              >
-                Delete
-              </button>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" [routerLink]="['new']">
-          Add a New Employee
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  `,
+  templateUrl: './employees-list.component.html',
+  styleUrls: ['./employees-list.component.css'],
 })
 export class EmployeesListComponent implements OnInit {
-  employees$ = {} as WritableSignal<Employee[]>;
+  employees$ = signal<Employee[]>([]);
+  searchTerm = '';
+  loading = false;
+
   displayedColumns: string[] = [
-    'col-name',
-    'col-position',
-    'col-level',
-    'col-action',
+    'employeeId',
+    'name',
+    'position',
+    'level',
+    'department',
+    'action',
   ];
 
-  constructor(private employeesService: EmployeeService) {}
+  filteredEmployees = computed(() => {
+    const term = this.searchTerm.toLowerCase().trim();
+    if (!term) return this.employees$();
 
-  ngOnInit() {
+    return this.employees$().filter(emp =>
+      emp.name?.toLowerCase().includes(term) ||
+      emp.position?.toLowerCase().includes(term) ||
+      emp.employeeId?.toLowerCase().includes(term)
+    );
+  });
+
+  constructor(private employeeService: EmployeeService) {}
+
+  ngOnInit(): void {
     this.fetchEmployees();
   }
 
+  fetchEmployees(): void {
+    this.loading = true;
+    this.employeeService.getEmployees();
+    setTimeout(() => {
+      this.employees$ = this.employeeService.employees$;
+      this.loading = false;
+    }, 500); // Simulated delay for smooth spinner
+  }
+
   deleteEmployee(id: string): void {
-    this.employeesService.deleteEmployee(id).subscribe({
+    if (!confirm('Are you sure you want to delete this employee?')) return;
+
+    this.employeeService.deleteEmployee(id).subscribe({
       next: () => this.fetchEmployees(),
     });
   }
 
-  private fetchEmployees(): void {
-    this.employees$ = this.employeesService.employees$;
-    this.employeesService.getEmployees();
+  clearSearch(): void {
+    this.searchTerm = '';
   }
 }

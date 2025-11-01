@@ -39,5 +39,9 @@
   },
   "devDependencies": {
     "concurrently": "^7.1.0"
+  },
+  "dependencies": {
+    "@angular/forms": "^20.3.7",
+    "@angular/material": "^20.2.10"
   }
 }

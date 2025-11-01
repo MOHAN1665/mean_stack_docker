@@ -1,0 +1,99 @@
+<div class="app-container">
+  <!-- Header -->
+  <mat-toolbar class="app-header" color="primary">
+    <div class="header-content">
+      <!-- Logo and Title -->
+      <div class="brand-section">
+        <button
+          mat-icon-button
+          (click)="toggleSidebar()"
+          class="sidebar-toggle"
+          matTooltip="Toggle sidebar"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        
+        <div class="brand">
+          <mat-icon class="brand-icon">badge</mat-icon>
+          <span class="brand-title">{{ title }}</span>
+        </div>
+      </div>
+
+      <!-- User Menu -->
+      <div class="header-actions">
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-btn">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu" class="user-menu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav
+        #sidenav
+        mode="side"
+        [opened]="isSidebarOpen"
+        class="app-sidebar"
+        [class.sidebar-collapsed]="!isSidebarOpen"
+      >
+        <!-- Navigation Links -->
+        <mat-nav-list class="nav-list">
+          <ng-container *ngFor="let item of navItems">
+            <a
+              mat-list-item
+              [routerLink]="item.path"
+              routerLinkActive="active-nav-item"
+              class="nav-item"
+            >
+              <mat-icon class="nav-icon" matListItemIcon>{{ item.icon }}</mat-icon>
+              
+              <div class="nav-content" *ngIf="isSidebarOpen">
+                <span class="nav-label">{{ item.label }}</span>
+                <span class="nav-description">{{ item.description }}</span>
+              </div>
+            </a>
+          </ng-container>
+        </mat-nav-list>
+
+        <!-- Quick Stats -->
+        <div class="sidebar-footer" *ngIf="isSidebarOpen">
+          <mat-divider></mat-divider>
+          <div class="quick-stats">
+            <div class="stat-item">
+              <mat-icon>group</mat-icon>
+              <span>{{ employeeCount }} Employee{{ employeeCount !== 1 ? 's' : '' }}</span>
+            </div>
+            <div class="stat-item">
+              <mat-icon>apartment</mat-icon>
+              <span>{{ departmentCount }} Department{{ departmentCount !== 1 ? 's' : '' }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-sidenav>
+
+      <!-- Main Content -->
+      <mat-sidenav-content class="content-area">
+        <div class="page-container">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

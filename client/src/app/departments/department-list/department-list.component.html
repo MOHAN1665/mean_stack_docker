@@ -1,0 +1,144 @@
+<div class="page-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="page-title">Departments</h1>
+        <p class="page-subtitle">Manage organizational departments and teams</p>
+      </div>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        [routerLink]="['/departments/add']"
+        class="add-button"
+      >
+        <mat-icon>add</mat-icon>
+        Add Department
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <mat-card class="content-card">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-state">
+      <mat-spinner diameter="40"></mat-spinner>
+      <span>Loading departments...</span>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && departments.length === 0" class="empty-state">
+      <mat-icon class="empty-icon">business</mat-icon>
+      <h3>No Departments Found</h3>
+      <p>Get started by creating your first department</p>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        [routerLink]="['/departments/add']"
+        class="empty-action"
+      >
+        <mat-icon>add</mat-icon>
+        Add Department
+      </button>
+    </div>
+
+    <!-- Departments Table -->
+    <div *ngIf="!loading && departments.length > 0" class="table-section">
+      <div class="table-header">
+        <span class="results-count">{{ departments.length }} department{{ departments.length !== 1 ? 's' : '' }} found</span>
+      </div>
+
+      <div class="table-container">
+        <table mat-table [dataSource]="departments" class="departments-table">
+          
+          <!-- Number Column -->
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef class="number-header">#</th>
+            <td mat-cell *matCellDef="let dept; index as i" class="number-cell">
+              <span class="dept-number">{{ i + 1 }}</span>
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="name-header">
+              <div class="column-header">
+                <mat-icon>corporate_fare</mat-icon>
+                Department Name
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let dept" class="name-cell">
+              <div class="dept-info">
+                <span class="dept-name">{{ dept.name }}</span>
+                <span *ngIf="dept.employeeCount !== undefined" class="employee-count">
+                  {{ dept.employeeCount }} employee{{ dept.employeeCount !== 1 ? 's' : '' }}
+                </span>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef class="description-header">
+              <div class="column-header">
+                <mat-icon>description</mat-icon>
+                Description
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let dept" class="description-cell">
+              <span class="dept-description" [title]="dept.description">
+                {{ dept.description || 'No description provided' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="actions-header">
+              <div class="column-header">
+                <mat-icon>settings</mat-icon>
+                Actions
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let dept" class="actions-cell">
+              <div class="action-buttons">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  [routerLink]="['/departments/edit', dept._id]"
+                  matTooltip="Edit department"
+                  class="action-btn edit-btn"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="deleteDepartment(dept._id)"
+                  matTooltip="Delete department"
+                  class="action-btn delete-btn"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+
+                <button
+                  mat-icon-button
+                  color="accent"
+                  [routerLink]="['/']" [queryParams]="{ department: dept._id }"
+                  matTooltip="View employees"
+                  class="action-btn view-btn"
+                >
+                  <mat-icon>people</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-card>
+</div>
