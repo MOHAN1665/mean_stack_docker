@@ -133,30 +133,30 @@ mean-stack-example/
 
 ## 🎯 API Endpoints
 ### Employees
-- GET /employees - Get all employees
-- GET /employees/:id - Get employee by ID
-- POST /employees - Create new employee
-- PUT /employees/:id - Update employee
-- DELETE /employees/:id - Delete employee
+- `GET /employees` - Get all employees
+- `GET /employees/:id` - Get employee by ID
+- `POST /employees` - Create new employee
+- `PUT /employees/:id` - Update employee
+- `DELETE /employees/:id` - Delete employee
 
 ### Departments
-- GET /departments - Get all departments
-- GET /departments/:id - Get department by ID
-- POST /departments - Create new department
-- PUT /departments/:id - Update department
-- DELETE /departments/:id - Delete department
+- `GET /departments` - Get all departments
+- `GET /departments/:id` - Get department by ID
+- `POST /departments` - Create new department
+- `PUT /departments/:id` - Update department
+- `DELETE /departments/:id` - Delete department
 
 
 ## 🐳 Docker Configuration
 The application uses a multi-container Docker setup:
-- client: Angular frontend served by Nginx
-- server: Node.js/Express backend API
-- mongodb: MongoDB database
+- **client:** Angular frontend served by Nginx
+- **server:** Node.js/Express backend API
+- **mongodb:** MongoDB database
 
 
 ## Environment Variables
 Create a .env file in the root directory:
-- .env
+`.env`
 ```bash
    MONGODB\_URI=mongodb://mongodb:27017/employee\_management
    API\_URL=http://localhost:5200
@@ -176,22 +176,22 @@ Create a .env file in the root directory:
 ## 🔧 Development
 ### Adding New Features
 
-1. Backend (API)
-- Add new routes in server/routes/
-- Create models in server/models/
+1. **Backend (API)**
+- Add new routes in `server/routes/`
+- Create models in `server/models/`
 - Update API documentation
 
-2. Frontend (Angular)
-- Generate components: ng generate component component-name
-- Create services: ng generate service service-name
-- Update routing in app.routes.ts
+2. **Frontend (Angular)**
+- Generate components: `ng generate component component-name`
+- Create services: `ng generate service service-name`
+- Update routing in `app.routes.ts`
 
 
 ### Code Style
-- TypeScript - Strict typing enabled
-- Angular Style Guide - Follows Angular best practices
-- Responsive Design - Mobile-first approach
-- Accessibility - WCAG compliant components
+- **TypeScript** - Strict typing enabled
+- **Angular Style Guide** - Follows Angular best practices
+- **Responsive Design** - Mobile-first approach
+- **Accessibility** - WCAG compliant components
 
 
 ## 🚀 Deployment
@@ -211,7 +211,7 @@ Create a .env file in the root directory:
 
 ## Environment Configuration
 
-**Update environment.prod.ts for production:**
+Update `environment.prod.ts` for production:
 ```bash
    export const environment = {
    production: true,
@@ -255,13 +255,12 @@ View container logs:
 
 ## 🤝 Contributing
 1. Fork the repository
-2. Create a feature branch: git checkout -b feature/amazing-feature
-3. Commit changes: git commit -m 'Add amazing feature'
-4. Push to branch: git push origin feature/amazing-feature
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
 
 ## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
-
