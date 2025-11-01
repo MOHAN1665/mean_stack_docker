@@ -61,15 +61,15 @@ Before running this application, ensure you have the following installed:
 ## 🏃‍♂️ Quick Start
 ### Using Docker (Recommended)
 1. **Clone the repository**
-&nbsp;  ```bash
+ ```bash
 &nbsp;  git clone https://github.com/MOHAN1665/mean\_stack\_docker.git
 &nbsp;  cd mean\_stack\_docker
-&nbsp;  ```
+```
 
 2. **Build and start the application**
-&nbsp;  ```bash
+ ```bash
 &nbsp;	docker compose up --build
-&nbsp;  ```
+```
 
 3. **Access the application**
 - **Frontend**: http://localhost:8080
@@ -270,4 +270,5 @@ docker compose logs mongodb
 ### 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
+
 
