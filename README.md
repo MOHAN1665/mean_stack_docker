@@ -72,8 +72,8 @@ Before running this application, ensure you have the following installed:
 &nbsp;  ```
 
 3. **Access the application**
-&nbsp;  - \*\*Frontend\*\*: http://localhost:8080
-&nbsp;  - \*\*Backend API\*\*: http://localhost:5200
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:5200
 
 ### Manual Development Setup
 
@@ -92,8 +92,8 @@ Before running this application, ensure you have the following installed:
    ```
    
 3. **Access the application**
-&nbsp;- \*\*Frontend:\*\* http://localhost:4200
-&nbsp;- \*\*Backend:\*\* http://localhost:5200
+- **Frontend:** http://localhost:4200
+- **Backend:** http://localhost:5200
 
 
 ### 🗂️ Project Structure
@@ -139,25 +139,25 @@ mean-stack-example/
 ### 🎯 API Endpoints
 
 ### Employees
-&nbsp;- GET /employees - Get all employees
-&nbsp;- GET /employees/:id - Get employee by ID
-&nbsp;- POST /employees - Create new employee
-&nbsp;- PUT /employees/:id - Update employee
-&nbsp;- DELETE /employees/:id - Delete employee
+- GET /employees - Get all employees
+- GET /employees/:id - Get employee by ID
+- POST /employees - Create new employee
+- PUT /employees/:id - Update employee
+- DELETE /employees/:id - Delete employee
 
 ### Departments
-&nbsp;- GET /departments - Get all departments
-&nbsp;- GET /departments/:id - Get department by ID
-&nbsp;- POST /departments - Create new department
-&nbsp;- PUT /departments/:id - Update department
-&nbsp;- DELETE /departments/:id - Delete department
+- GET /departments - Get all departments
+- GET /departments/:id - Get department by ID
+- POST /departments - Create new department
+- PUT /departments/:id - Update department
+- DELETE /departments/:id - Delete department
 
 
 ### 🐳 Docker Configuration
 The application uses a multi-container Docker setup:
-&nbsp;- client: Angular frontend served by Nginx
-&nbsp;- server: Node.js/Express backend API
-&nbsp;- mongodb: MongoDB database
+- client: Angular frontend served by Nginx
+- server: Node.js/Express backend API
+- mongodb: MongoDB database
 
 
 ### Environment Variables
@@ -168,34 +168,34 @@ env
 
 
 ### 🎨 UI/UX Features
-&nbsp;- Modern Material Design - Clean, professional interface
-&nbsp;- Responsive Layout - Optimized for all screen sizes
-&nbsp;- Real-time Updates - Live data synchronization
-&nbsp;- Intuitive Navigation - Sidebar with quick access to all features
-&nbsp;- Loading States - Professional loading indicators
-&nbsp;- Empty States - Helpful messages when no data exists
-&nbsp;- Form Validation - Comprehensive error handling and user feedback
+- Modern Material Design - Clean, professional interface
+- Responsive Layout - Optimized for all screen sizes
+- Real-time Updates - Live data synchronization
+- Intuitive Navigation - Sidebar with quick access to all features
+- Loading States - Professional loading indicators
+- Empty States - Helpful messages when no data exists
+- Form Validation - Comprehensive error handling and user feedback
 
 
 ### 🔧 Development
 ### Adding New Features
 
 1. Backend (API)
-&nbsp;- Add new routes in server/routes/
-&nbsp;- Create models in server/models/
-&nbsp;- Update API documentation
+- Add new routes in server/routes/
+- Create models in server/models/
+- Update API documentation
 
 2. Frontend (Angular)
-&nbsp;- Generate components: ng generate component component-name
-&nbsp;- Create services: ng generate service service-name
-&nbsp;- Update routing in app.routes.ts
+- Generate components: ng generate component component-name
+- Create services: ng generate service service-name
+- Update routing in app.routes.ts
 
 
 ### Code Style
-&nbsp;- TypeScript - Strict typing enabled
-&nbsp;- Angular Style Guide - Follows Angular best practices
-&nbsp;- Responsive Design - Mobile-first approach
-&nbsp;- Accessibility - WCAG compliant components
+- TypeScript - Strict typing enabled
+- Angular Style Guide - Follows Angular best practices
+- Responsive Design - Mobile-first approach
+- Accessibility - WCAG compliant components
 
 
 ### 🚀 Deployment
@@ -229,21 +229,21 @@ export const environment = {
 ## Common Issues
 
 1. **Docker build fails**
-&nbsp;- Ensure Docker is running
-&nbsp;- Check available disk space
-&nbsp;- Verify network connectivity
+- Ensure Docker is running
+- Check available disk space
+- Verify network connectivity
 
 2. **Database connection issues**
-&nbsp;- Check MongoDB container status
-&nbsp;- Verify environment variables
-&nbsp;- Check network configuration in docker-compose
+- Check MongoDB container status
+- Verify environment variables
+- Check network configuration in docker-compose
 
 
 
 3.**Frontend not loading**
-&nbsp;- Check Nginx configuration
-&nbsp;- Verify Angular build process
-&nbsp;- Check browser console for errors
+- Check Nginx configuration
+- Verify Angular build process
+- Check browser console for errors
 
 
 ### Logs
@@ -270,3 +270,4 @@ docker compose logs mongodb
 ### 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 For questions or support, please open an issue in the GitHub repository.
+
